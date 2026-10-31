@@ -119,7 +119,7 @@ body{
   display:flex;align-items:center;justify-content:center;text-align:center;
   color:var(--ink);pointer-events:none;
 }
-.writing{width:100%;max-height:100%;overflow:hidden;overflow-y:hidden;overflow-x:hidden;scrollbar-width:none;white-space:pre-wrap;text-align:left;font-size:clamp(11px,1.15vw,13px);line-height:1.38;}
+.writing{width:100%;max-height:100%;overflow:hidden;overflow-y:hidden;overflow-x:hidden;scrollbar-width:none;white-space:pre-wrap;text-align:left;font-size:clamp(12px,1.24vw,14px);line-height:1.46;}
 .page-num{
   position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
   color:#9b804c;font-size:11px;letter-spacing:.19em;z-index:2;
@@ -175,21 +175,21 @@ body{
 .control-btn:disabled{opacity:.28;cursor:default}
 .counter{min-width:112px;text-align:center;color:#91794e;font:10px Arial,sans-serif;letter-spacing:.18em}
 @media(max-width:650px){
-  .app{padding:10px 6px;gap:10px}
-  .book{width:96vw;min-height:205px;aspect-ratio:1.5/1;height:auto}
-  .book.closed{width:min(74vw,390px);min-height:315px;aspect-ratio:.75/1}
+  .writing{font-size:10px;line-height:1.32;max-height:100%;overflow:hidden;overflow-y:hidden;overflow-x:hidden;}
+  .app{padding:12px 7px;gap:12px}
+  .book{width:96vw;min-height:240px}
+  .book.closed{width:min(74vw,390px);min-height:315px}
   .spread{grid-template-columns:1fr 1fr}
   .page.left{display:block !important;border-radius:6px 1px 1px 6px;border-right:0}
-  .page.right{display:block !important;grid-column:auto;grid-row:auto;border-left:0;border-radius:1px 6px 6px 1px}
-  .spine-shadow{display:block;width:12px}
-  .page:before{inset:8px}
-  .page-content{inset:12% 8% 15%}
-  .writing{font-size:clamp(10px,2.9vw,11.5px);line-height:1.32;max-height:100%;overflow:hidden;overflow-y:hidden;overflow-x:hidden;hyphens:auto;-webkit-hyphens:auto}
-  .page-num{bottom:11px;font-size:9px}
-  .corner{width:20px;height:20px}
-  .corner.tl{top:10px;left:10px}.corner.tr{top:10px;right:10px}
-  .corner.bl{bottom:10px;left:10px}.corner.br{bottom:10px;right:10px}
-  .page:after{top:6px;font-size:15px}
+  .page.right{display:block !important;border-radius:1px 6px 6px 1px;border-left:0}
+  .spine-shadow{display:block}
+  .page:before{inset:10px}
+  .page-content{inset:13% 9% 15%}
+  .page-num{bottom:15px}
+  .corner{width:25px;height:25px}
+  .corner.tl{top:14px;left:14px}.corner.tr{top:14px;right:14px}
+  .corner.bl{bottom:14px;left:14px}.corner.br{bottom:14px;right:14px}
+  .page:after{top:8px;font-size:18px}
 }
 @media(prefers-reduced-motion:reduce){.sheet.turn-forward,.sheet.turn-backward{animation-duration:.01ms}}
 </style>
@@ -241,28 +241,28 @@ body{
 const bookData = {
   title: 'El amor hacia la persona que me lo enseñó',
   dedication: 'Para mi media porción',
-  pages:   [
-    "Muyyyyyy buenossss días muñequita, como amaneció la cumpleañera más increíble, guapa, preciosa, apoteósicaa y sobre todo inteligente? Bien? Espero que Shi mi amor, hoy es un día muy importante para ti, para mí, para ",
-    "nosotros y para las personas que te amamos, un día como hoy nació la persona que se convirtió en mi persona favorita, en la persona que más amo en este mundo.\n\nCumpliste 22 añitos mi amor, estás grandecita ya, pero sobre ",
-    "todo has cumplido muchas cosas de las cuales yo estoy demasiado orgulloso de ti, cosas que el primer día yo me sorprendi, te acuerdas ? Cuando en diciembre me contaste todo y yo me quedé helado KAKAKSKSKSJS, literalmente ",
-    "así fue mi amor, verte como has avanzado y saber para donde vas me llena demasiado, tus logros a mí me hacen feliz, tus logros a mí me llenan, verte feliz, verte sonreír a mí me llena en todos los sentidos, y verte como ",
-    "tienes personas que te aman, personas que son buenos contigo, personas que hacen cositas por ti a mí me hace feliz y mira, el pasado 31 ni nos hablabamos, fue un ah feliz cumpleaños y ya, pero mira dónde estamos ",
-    "LSLSKSKSKSKSKSKS hasta donde hemos llegado, todo lo que hemos pasado, días, noches, mañanas todo, todo el tiempo que hemos convivido a mí me hace extremadamente feliz, y si hoy cumplimos diez meses y esto hace que sea ",
-    "muchísimo más especial, cuanto tiempo de conocernos mi amor, no? Hace muchísimos años cuando éramos unos niños solíamos jugar y divertirnos mi amor, ahora miranos, estamos un poquito más grandes, un poquito más adultos y seguimos juntos.\n\n",
-    "Aunque no lo creas tú hiciste a ese niño que conociste demasiado feliz, tú lo llenaste de amor, de sentimientos nuevos, de tantas cosas que para el eran extrañas, por primera vez sintió el amor mutuo, sincero y puro, ",
-    "probó lo que amar y sentirse amado por esa persona que tanto amaba, eso tú me lo enseñaste y eso jamás, escuchame, jamás de los jamases lo voy a olvidar, porque ? Porque me enseñaste lo hermoso que era, enserio fue mi ",
-    "primera vez sintiendo eso y dios mío, te agradeceré toda mi vida y el resto de las otras por hacerlo, porque me encanta, es hermoso, me enseñaste que el amor no se compra, ni se gana, solo se obtiene porque así nace ",
-    "hacerlo y me mostraste un mundo lleno de colores, un mundo que para mí no existía pero llegaste tú, como una super heroína y me salvaste de ese engaño, muchas pero muchas gracias por hacer eso tan importante para mí.\n\n",
-    "10 meses mi amor, no te parece loca la cifra ? En que momento llegamos a 10 meses ? En que momento pasó tan rápido el tiempo? Yo no sé pero que siga pasando así, que pase más rápido y más y más hasta que llegue nuestro ",
-    "día, no sabes lo ansioso que estoy por diciembre, te lo juro que estoy súper ansioso y desesperado por qué llegue ese día, es tan importante para ambos y para mí uffff, conocer la mujer de mi vida, literalmente la primera ",
-    "y única que he tenido, la mujer que me ha enseñado muchas cosas, me ha hecho mejorar, me ha hecho ser mejor persona y tel agradezco demasiado.\n\nSe que hemos tenido días demasiado feos mi amor, yo lo sé, días que parece ",
-    "que no nos entendiéramos, días que simplemente no fueron buenos pero sabes que es lo más importante de todo ? Que seguimos acá, miramos, seguimos juntos, amándonos, respetandonos, deseándonos y todo esos sentimientos ",
-    "bonitos que siempre hemos tenido.\n\nEs difícil mi amor, creeme que yo lo sé, pero lo estamos logrando, lo estamos haciendo mi reina hermosa y eso me pone super feliz, porque hemos pasado por tantas cosas que ese es nuestro ",
-    "aprendizaje y lo que nos enseña para no seguir en esos mismos errores, te amo muchísimo porque generas mil cosas en mi, te amo muchísimo porque me lo das todo sin pedirme nada, te amo muchísimo porque fuiste esa persona ",
-    "que a mí me enseñó que es el amor y desde que lo conocí, precisamente el tuyo, me encantó y solo quiero ese.\n\nFelices 10 meses mi doble porción, han sido 10 meses increíbles, 10 meses llenos de tantas cosas, aventuras, ",
-    "momentos, peleas, pero sobre todo muchísimo amor, y esho es lo importante.\n\nGRACIAS ITZA, gracias por existir, gracias por elegirme a mí, gracias por estar conmigo y gracias, sobre todo gracias por estar para mí como yo ",
-    "lo estoy para ti, tú compañía para mí significa demasiado y solo basta hablar un rato contigo para olvidarme de mis problemas, por eso eres y siempre serás mi lugar seguro y mi lugar favorito.\n\n-De Miguel para mí ratoncita."
-  ]
+  pages: [
+  "Muyyyyyy buenossss días muñequita, como amaneció la cumpleañera más increíble, guapa, preciosa, apoteósicaa y sobre todo inteligente? Bien? Espero que Shi mi amor, hoy es un día muy importante para ti, para mí, para ",
+  "nosotros y para las personas que te amamos, un día como hoy nació la persona que se convirtió en mi persona favorita, en la persona que más amo en este mundo.\n\nCumpliste 22 añitos mi amor, estás grandecita ya, pero sobre ",
+  "todo has cumplido muchas cosas de las cuales yo estoy demasiado orgulloso de ti, cosas que el primer día yo me sorprendi, te acuerdas ? Cuando en diciembre me contaste todo y yo me quedé helado KAKAKSKSKSJS, literalmente ",
+  "así fue mi amor, verte como has avanzado y saber para donde vas me llena demasiado, tus logros a mí me hacen feliz, tus logros a mí me llenan, verte feliz, verte sonreír a mí me llena en todos los sentidos, y verte como ",
+  "tienes personas que te aman, personas que son buenos contigo, personas que hacen cositas por ti a mí me hace feliz y mira, el pasado 31 ni nos hablabamos, fue un ah feliz cumpleaños y ya, pero mira dónde estamos ",
+  "LSLSKSKSKSKSKSKS hasta donde hemos llegado, todo lo que hemos pasado, días, noches, mañanas todo, todo el tiempo que hemos convivido a mí me hace extremadamente feliz, y si hoy cumplimos diez meses y esto hace que sea ",
+  "muchísimo más especial, cuanto tiempo de conocernos mi amor, no? Hace muchísimos años cuando éramos unos niños solíamos jugar y divertirnos mi amor, ahora miranos, estamos un poquito más grandes, un poquito más adultos y seguimos juntos.\n\n",
+  "Aunque no lo creas tú hiciste a ese niño que conociste demasiado feliz, tú lo llenaste de amor, de sentimientos nuevos, de tantas cosas que para el eran extrañas, por primera vez sintió el amor mutuo, sincero y puro, ",
+  "probó lo que amar y sentirse amado por esa persona que tanto amaba, eso tú me lo enseñaste y eso jamás, escuchame, jamás de los jamases lo voy a olvidar, porque ? Porque me enseñaste lo hermoso que era, enserio fue mi ",
+  "primera vez sintiendo eso y dios mío, te agradeceré toda mi vida y el resto de las otras por hacerlo, porque me encanta, es hermoso, me enseñaste que el amor no se compra, ni se gana, solo se obtiene porque así nace ",
+  "hacerlo y me mostraste un mundo lleno de colores, un mundo que para mí no existía pero llegaste tú, como una super heroína y me salvaste de ese engaño, muchas pero muchas gracias por hacer eso tan importante para mí.\n\n",
+  "10 meses mi amor, no te parece loca la cifra ? En que momento llegamos a 10 meses ? En que momento pasó tan rápido el tiempo? Yo no sé pero que siga pasando así, que pase más rápido y más y más hasta que llegue nuestro ",
+  "día, no sabes lo ansioso que estoy por diciembre, te lo juro que estoy súper ansioso y desesperado por qué llegue ese día, es tan importante para ambos y para mí uffff, conocer la mujer de mi vida, literalmente la primera ",
+  "y única que he tenido, la mujer que me ha enseñado muchas cosas, me ha hecho mejorar, me ha hecho ser mejor persona y tel agradezco demasiado.\n\nSe que hemos tenido días demasiado feos mi amor, yo lo sé, días que parece ",
+  "que no nos entendiéramos, días que simplemente no fueron buenos pero sabes que es lo más importante de todo ? Que seguimos acá, miramos, seguimos juntos, amándonos, respetandonos, deseándonos y todo esos sentimientos ",
+  "bonitos que siempre hemos tenido.\n\nEs difícil mi amor, creeme que yo lo sé, pero lo estamos logrando, lo estamos haciendo mi reina hermosa y eso me pone super feliz, porque hemos pasado por tantas cosas que ese es nuestro ",
+  "aprendizaje y lo que nos enseña para no seguir en esos mismos errores, te amo muchísimo porque generas mil cosas en mi, te amo muchísimo porque me lo das todo sin pedirme nada, te amo muchísimo porque fuiste esa persona ",
+  "que a mí me enseñó que es el amor y desde que lo conocí, precisamente el tuyo, me encantó y solo quiero ese.\n\nFelices 10 meses mi doble porción, han sido 10 meses increíbles, 10 meses llenos de tantas cosas, aventuras, ",
+  "momentos, peleas, pero sobre todo muchísimo amor, y esho es lo importante.\n\nGRACIAS ITZA, gracias por existir, gracias por elegirme a mí, gracias por estar conmigo y gracias, sobre todo gracias por estar para mí como yo ",
+  "lo estoy para ti, tú compañía para mí significa demasiado y solo basta hablar un rato contigo para olvidarme de mis problemas, por eso eres y siempre serás mi lugar seguro y mi lugar favorito.\n\n-De Miguel para mí ratoncita."
+]
 };
 const book = document.getElementById('book');
 const cover = document.getElementById('cover');
@@ -280,38 +280,31 @@ let isOpen = false;
 let spreadIndex = 0;
 let isAnimating = false;
 const total = bookData.pages.length;
-const lastSpreadIndex = Math.max(0,total-2);
+const lastSpreadIndex = Math.max(0, Math.ceil((total - 2) / 2) * 2);
 
 function escapeHtml(value){
-  return String(value).replace(/[&<>\\"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+  return String(value).replace(/[&<>\"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 }
 const cornerShape = '<path d="M3 30 C3 14 14 3 30 3 M3 18 C3 10 10 3 18 3 M3 3 H14 M3 3 V14 M8 29 C8 18 18 8 29 8" stroke="currentColor" stroke-width="1" fill="none"/><path d="M8 8 L12 12 M14 3 L17 6" stroke="currentColor" stroke-width=".8" fill="none"/>';
 function corner(cls){return `<svg class="corner ${cls}" viewBox="0 0 40 40" aria-hidden="true">${cornerShape}</svg>`}
 function pageMarkup(index){
-  if(index < 0 || index >= total) return '';
+  if(index >= total) return '';
+  const pageNumber = index + 1;
   const text = bookData.pages[index] ?? '';
   return `${corner('tl')}${corner('tr')}${corner('bl')}${corner('br')}
     <div class="center-flourish" aria-hidden="true">✧</div>
-    <div class="page-content"><div class="writing" lang="es">${escapeHtml(text)}</div></div>
-    <div class="page-num">— ${index+1} —</div>`;
+    <div class="page-content"><div class="writing">${escapeHtml(text)}</div></div>
+    <div class="page-num">— ${pageNumber} —</div>`;
 }
 function renderSpread(){
-  leftPage.style.display='block';
-  rightPage.style.display='block';
-  leftPage.innerHTML=pageMarkup(spreadIndex);
-  rightPage.innerHTML=pageMarkup(spreadIndex+1);
-  rightPage.style.visibility=spreadIndex+1<total?'visible':'hidden';
-  counter.textContent=`${spreadIndex+1}–${Math.min(spreadIndex+2,total)} / ${total}`;
-  prevBtn.disabled=!isOpen||isAnimating;
-  nextBtn.disabled=isOpen?(spreadIndex>=lastSpreadIndex||isAnimating):false;
-  leftHotspot.hidden=!isOpen||spreadIndex===0||isAnimating;
-  rightHotspot.hidden=!isOpen||spreadIndex>=lastSpreadIndex||isAnimating;
-}
-function resetSheet(){
-  sheet.className='sheet';
-  sheet.style.left='50%';
-  sheet.style.width='50%';
-  sheet.style.transformOrigin='left center';
+  leftPage.innerHTML = pageMarkup(spreadIndex);
+  rightPage.innerHTML = pageMarkup(spreadIndex + 1);
+  rightPage.style.visibility = spreadIndex + 1 < total ? 'visible' : 'hidden';
+  counter.textContent = spreadIndex + 1 === total ? `${total} / ${total}` : `${spreadIndex + 1}–${Math.min(spreadIndex + 2,total)} / ${total}`;
+  prevBtn.disabled = !isOpen || isAnimating;
+  nextBtn.disabled = isOpen ? (spreadIndex >= lastSpreadIndex || isAnimating) : false;
+  leftHotspot.hidden = !isOpen || spreadIndex === 0 || isAnimating;
+  rightHotspot.hidden = !isOpen || spreadIndex >= lastSpreadIndex || isAnimating;
 }
 function openBook(){
   if(isOpen)return;
@@ -325,44 +318,43 @@ function closeBook(){
   book.classList.remove('open');book.classList.add('closed');
   counter.textContent='PORTADA';prevBtn.disabled=true;nextBtn.disabled=false;
   leftHotspot.hidden=true;rightHotspot.hidden=true;
-  resetSheet();
+  sheet.className='sheet';sheet.style.left='50%';sheet.style.transformOrigin='left center';
 }
 function finishTurn(direction){
-  resetSheet();
-  spreadIndex=direction==='forward'?Math.min(spreadIndex+2,lastSpreadIndex):Math.max(spreadIndex-2,0);
+  sheet.className='sheet';
+  sheet.style.left='50%';sheet.style.transformOrigin='left center';
+  spreadIndex = direction === 'forward' ? Math.min(spreadIndex + 2,lastSpreadIndex) : Math.max(spreadIndex - 2,0);
   isAnimating=false;
   renderSpread();
 }
 function turnNext(){
   if(!isOpen||isAnimating||spreadIndex>=lastSpreadIndex)return;
   isAnimating=true;
+  // La hoja que gira muestra la página actual por delante y la siguiente por detrás.
   leftPage.innerHTML=pageMarkup(spreadIndex);
   rightPage.innerHTML=pageMarkup(spreadIndex+3);
   sheetFront.innerHTML=pageMarkup(spreadIndex+1);
   sheetBack.innerHTML=pageMarkup(spreadIndex+2);
-  sheet.style.left='50%';sheet.style.width='50%';sheet.style.transformOrigin='left center';
+  sheet.style.left='50%';sheet.style.transformOrigin='left center';
   sheet.className='sheet';void sheet.offsetWidth;sheet.classList.add('turn-forward');
   prevBtn.disabled=true;nextBtn.disabled=true;leftHotspot.hidden=true;rightHotspot.hidden=true;
   sheet.addEventListener('animationend',function onEnd(e){
-    if(e.target!==sheet)return;
-    sheet.removeEventListener('animationend',onEnd);
-    finishTurn('forward');
+    if(e.target!==sheet)return;sheet.removeEventListener('animationend',onEnd);finishTurn('forward');
   });
 }
 function turnPrev(){
   if(!isOpen||isAnimating||spreadIndex<=0)return;
   isAnimating=true;
+  // Al retroceder, la página izquierda se voltea hacia la derecha.
   leftPage.innerHTML=pageMarkup(spreadIndex-2);
   rightPage.innerHTML=pageMarkup(spreadIndex+1);
   sheetFront.innerHTML=pageMarkup(spreadIndex);
   sheetBack.innerHTML=pageMarkup(spreadIndex-1);
-  sheet.style.left='0';sheet.style.width='50%';sheet.style.transformOrigin='right center';
+  sheet.style.left='0';sheet.style.transformOrigin='right center';
   sheet.className='sheet';void sheet.offsetWidth;sheet.classList.add('turn-backward');
   prevBtn.disabled=true;nextBtn.disabled=true;leftHotspot.hidden=true;rightHotspot.hidden=true;
   sheet.addEventListener('animationend',function onEnd(e){
-    if(e.target!==sheet)return;
-    sheet.removeEventListener('animationend',onEnd);
-    finishTurn('backward');
+    if(e.target!==sheet)return;sheet.removeEventListener('animationend',onEnd);finishTurn('backward');
   });
 }
 cover.addEventListener('click',openBook);
@@ -385,18 +377,6 @@ book.addEventListener('pointerup',e=>{
   dragStartX=null;
 });
 book.addEventListener('pointercancel',()=>{dragStartX=null});
-const resizeHandler=()=>{if(isOpen&&!isAnimating)renderSpread();};
-window.addEventListener('resize',resizeHandler);
-
-const handleViewportChange = () => {
-  if(!isOpen) return;
-  if(!isSinglePage()) spreadIndex = Math.floor(spreadIndex/2)*2;
-  resetSheet();
-  isAnimating = false;
-  renderSpread();
-};
-if(mobileQuery.addEventListener) mobileQuery.addEventListener('change',handleViewportChange);
-else mobileQuery.addListener(handleViewportChange);
 renderSpread();counter.textContent='PORTADA';
 </script>
 </body>
