@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f3e9">
+<title>El amor hacia la persona que me lo enseñó</title>
+<style>
+:root{
+  --ivory:#fffdf8;
+  --paper:#fffefa;
+  --paper-edge:#e7dcc3;
+  --gold:#b79653;
+  --gold-dark:#8d713c;
+  --gold-soft:#dfcfa9;
+  --ink:#5c4b30;
+  --muted:#9c8966;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;}
+body{
+  min-height:100vh;
+  color:var(--ink);
+  background:radial-gradient(ellipse at 50% 12%,#fff 0%,#f7f4ed 54%,#e9e3d7 100%);
+  font-family:Georgia,'Times New Roman',serif;
+  overflow-x:hidden;
+}
+.app{
+  min-height:100vh;
+  padding:24px 16px 22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+}
+.heading{text-align:center;max-width:900px;margin-bottom:2px}
+.heading .eyebrow{
+  color:var(--gold-dark);font:10px/1.5 Arial,sans-serif;
+  letter-spacing:.34em;text-transform:uppercase;
+}
+.heading h1{
+  color:#806638;font-size:clamp(21px,3vw,31px);font-weight:400;
+  letter-spacing:.025em;margin:7px 0 0;
+}
+.stage{width:min(100%,1080px);display:flex;justify-content:center;align-items:center;perspective:2400px;padding:5px 0}
+.book{
+  position:relative;
+  width:min(88vw,960px,calc((100vh - 190px)*1.5));
+  aspect-ratio:1.5/1;
+  min-height:280px;
+  transform-style:preserve-3d;
+  filter:drop-shadow(0 22px 24px rgba(74,58,30,.18));
+  touch-action:pan-y;
+}
+.book.closed{
+  width:min(56vw,560px,calc((100vh - 200px)*.75));
+  aspect-ratio:.75/1;
+  min-height:340px;
+  cursor:pointer;
+}
+.cover{
+  position:absolute;inset:0;z-index:15;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid #c8ad73;border-radius:5px 13px 13px 5px;
+  background:linear-gradient(135deg,#fff 0%,#fffdf8 55%,#f5efdf 100%);
+  box-shadow:inset 8px 0 13px rgba(125,101,54,.08),inset -3px 0 6px rgba(181,148,80,.17);
+  overflow:hidden;
+}
+.cover:before{
+  content:"";position:absolute;inset:17px;border:1px solid var(--gold);
+  outline:1px solid rgba(183,150,83,.33);outline-offset:5px;pointer-events:none;
+}
+.cover:after{
+  content:"✦";position:absolute;top:25px;left:50%;transform:translateX(-50%);
+  padding:0 10px;background:#fffdf8;color:var(--gold);font-size:18px;
+}
+.cover-inner{
+  position:relative;width:100%;height:100%;padding:38px 32px 34px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+}
+.crown{width:80px;height:60px;margin:2px 0 23px;color:var(--gold)}
+.cover-kicker{
+  color:var(--gold-dark);font:10px/1.6 Arial,sans-serif;letter-spacing:.28em;
+  text-transform:uppercase;margin-bottom:19px;
+}
+.cover-title{
+  max-width:91%;margin:0;color:#806638;font-size:clamp(24px,3.35vw,42px);
+  font-weight:400;line-height:1.2;letter-spacing:.035em;text-wrap:balance;
+}
+.cover-rule{width:46%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:23px 0 0}
+.spread{
+  position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;
+  border-radius:5px;overflow:visible;transform-style:preserve-3d;
+}
+.book.closed .spread,.book.closed .sheet,.book.closed .hotspot{display:none}
+.book.open .cover{display:none}
+.page{
+  position:relative;min-width:0;min-height:0;overflow:hidden;
+  background-color:var(--paper) !important;
+  background-image:
+    radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.98),rgba(255,254,250,.0) 65%),
+    linear-gradient(90deg,rgba(194,171,125,.12),transparent 8%,transparent 92%,rgba(194,171,125,.09)) !important;
+  border:1px solid rgba(183,150,83,.72);
+  box-shadow:inset 0 0 26px rgba(139,111,58,.055);
+}
+.page.left{border-radius:6px 1px 1px 6px;border-right:0}
+.page.right{border-radius:1px 6px 6px 1px;border-left:0}
+.page:before{
+  content:"";position:absolute;inset:18px;border:1px solid rgba(183,150,83,.46);
+  outline:1px solid rgba(183,150,83,.13);outline-offset:3px;pointer-events:none;
+}
+.page:after{
+  content:"❧";position:absolute;top:13px;left:50%;transform:translateX(-50%);
+  color:rgba(183,150,83,.86);font-size:23px;line-height:1;background:var(--paper);padding:0 10px;
+}
+.page-content{
+  position:absolute;inset:11% 11% 12%;z-index:1;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  color:var(--ink);pointer-events:none;
+}
+.writing{width:100%;max-height:100%;overflow:hidden;overflow-y:hidden;overflow-x:hidden;scrollbar-width:none;white-space:pre-wrap;text-align:left;font-size:clamp(12px,1.24vw,14px);line-height:1.46;}
+.page-num{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  color:#9b804c;font-size:11px;letter-spacing:.19em;z-index:2;
+  background:var(--paper);padding:0 9px;
+}
+.corner{position:absolute;width:39px;height:39px;color:rgba(183,150,83,.82);z-index:2;pointer-events:none}
+.corner.tl{top:22px;left:22px}
+.corner.tr{top:22px;right:22px;transform:scaleX(-1)}
+.corner.bl{bottom:22px;left:22px;transform:scaleY(-1)}
+.corner.br{bottom:22px;right:22px;transform:scale(-1)}
+.center-flourish{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  color:rgba(183,150,83,.13);font-size:58px;pointer-events:none;user-select:none;
+}
+.spine-shadow{
+  position:absolute;z-index:5;top:0;bottom:0;left:50%;width:18px;transform:translateX(-50%);
+  background:linear-gradient(90deg,rgba(92,70,35,.13),rgba(255,255,255,.65) 48%,rgba(92,70,35,.12));
+  pointer-events:none;
+}
+.sheet{
+  position:absolute;z-index:8;top:0;bottom:0;left:50%;width:50%;
+  transform-origin:left center;transform-style:preserve-3d;
+  display:none;pointer-events:none;
+}
+.sheet.turn-forward{display:block;animation:turnForward .92s cubic-bezier(.62,.03,.32,1) forwards}
+.sheet.turn-backward{display:block;left:0;transform-origin:right center;animation:turnBackward .92s cubic-bezier(.62,.03,.32,1) forwards}
+.sheet-face{
+  position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;
+  background-color:var(--paper) !important;
+  background-image:linear-gradient(90deg,rgba(194,171,125,.12),transparent 12%,transparent 90%,rgba(194,171,125,.09)) !important;
+  border:1px solid rgba(183,150,83,.72);box-shadow:0 3px 12px rgba(80,61,27,.14);
+}
+.sheet-face.front{border-radius:1px 6px 6px 1px}
+.sheet-face.back{transform:rotateY(180deg);border-radius:6px 1px 1px 6px}
+.sheet.turn-backward .sheet-face.front{border-radius:6px 1px 1px 6px}
+.sheet.turn-backward .sheet-face.back{border-radius:1px 6px 6px 1px}
+@keyframes turnForward{from{transform:rotateY(0deg)}to{transform:rotateY(-180deg)}}
+@keyframes turnBackward{from{transform:rotateY(0deg)}to{transform:rotateY(180deg)}}
+.hotspot{
+  position:absolute;z-index:12;top:0;bottom:0;width:50%;border:0;padding:0;
+  background:transparent;cursor:pointer;opacity:0;
+}
+.hotspot.left{left:0;cursor:w-resize}
+.hotspot.right{right:0;cursor:e-resize}
+.hotspot:focus-visible{opacity:1;outline:2px solid rgba(183,150,83,.35);outline-offset:-9px}
+.controls{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--muted);user-select:none}
+.control-btn{
+  appearance:none;width:40px;height:40px;border-radius:50%;border:1px solid rgba(183,150,83,.65);
+  background:rgba(255,253,248,.88);color:var(--gold-dark);cursor:pointer;font-size:21px;line-height:1;
+  box-shadow:0 3px 9px rgba(89,69,33,.07);transition:background .2s,transform .2s,opacity .2s;
+}
+.control-btn:hover:not(:disabled){background:white;transform:translateY(-2px)}
+.control-btn:disabled{opacity:.28;cursor:default}
+.counter{min-width:112px;text-align:center;color:#91794e;font:10px Arial,sans-serif;letter-spacing:.18em}
+@media(max-width:650px){
+  .writing{font-size:9.5px;line-height:1.25;max-height:100%;overflow:hidden;overflow-y:hidden;}
+  .app{padding:14px 8px;gap:13px}
+  .book{width:96vw;min-height:240px}
+  .book.closed{width:min(74vw,390px);min-height:315px}
+  .page:before{inset:10px}
+  .page-content{inset:14% 10% 15%}
+  .page-num{bottom:15px}
+  .corner{width:25px;height:25px}
+  .corner.tl{top:14px;left:14px}.corner.tr{top:14px;right:14px}
+  .corner.bl{bottom:14px;left:14px}.corner.br{bottom:14px;right:14px}
+  .page:after{top:8px;font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){.sheet.turn-forward,.sheet.turn-backward{animation-duration:.01ms}}
+</style>
+</head>
+<body>
+<div class="app">
+  <main class="stage" aria-label="Libro digital interactivo">
+    <section class="book closed" id="book" aria-label="El amor hacia la persona que me lo enseñó">
+      <div class="cover" id="cover" role="button" tabindex="0" aria-label="Abrir el libro">
+        <div class="cover-inner">
+          <svg class="crown" viewBox="0 0 120 84" fill="none" aria-hidden="true">
+            <path d="M17 27 L38 45 L60 13 L82 45 L103 27 L95 65 H25 Z"
+                  stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 59 H98 M25 68 H95"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M38 45 L43 59 M82 45 L77 59"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="17" cy="24" r="4" fill="currentColor"/>
+            <circle cx="60" cy="10" r="4.5" fill="currentColor"/>
+            <circle cx="103" cy="24" r="4" fill="currentColor"/>
+            <path d="M60 31 L64 37 L60 43 L56 37 Z" fill="currentColor" opacity=".85"/>
+          </svg>
+          <div class="cover-kicker">Para mi media porción</div>
+          <h2 class="cover-title" id="coverTitle">El amor hacia la persona que me lo enseñó</h2>
+          <div class="cover-rule"></div>
+        </div>
+      </div>
+      <div class="spread" id="spread" aria-live="polite">
+        <article class="page left" id="leftPage"></article>
+        <article class="page right" id="rightPage"></article>
+        <div class="spine-shadow"></div>
+      </div>
+      <div class="sheet" id="sheet">
+        <div class="sheet-face front" id="sheetFront"></div>
+        <div class="sheet-face back" id="sheetBack"></div>
+      </div>
+      <button class="hotspot left" id="leftHotspot" aria-label="Página anterior" hidden></button>
+      <button class="hotspot right" id="rightHotspot" aria-label="Página siguiente" hidden></button>
+    </section>
+  </main>
+  <nav class="controls" aria-label="Controles del libro">
+    <button class="control-btn" id="prevBtn" aria-label="Página anterior" disabled>‹</button>
+    <div class="counter" id="counter">PORTADA</div>
+    <button class="control-btn" id="nextBtn" aria-label="Página siguiente">›</button>
+  </nav>
+</div>
+<script>
+// Texto proporcionado por el autor, distribuido en páginas equilibradas sin modificar su contenido.
+const bookData = {
+  title: 'El amor hacia la persona que me lo enseñó',
+  dedication: 'Para mi media porción',
+  pages: [
+  "Muyyyyyy buenossss días muñequita, como amaneció la cumpleañera más increíble, guapa, preciosa, apoteósicaa y sobre todo inteligente? Bien? Espero que Shi mi amor, hoy es un día muy importante para ti, para mí, para nosotros y para las personas que te amamos, un día como hoy nació la persona que se convirtió en mi persona favorita, en la persona que más amo en este mundo.\n\n",
+  "Cumpliste 22 añitos mi amor, estás grandecita ya, pero sobre todo has cumplido muchas cosas de las cuales yo estoy demasiado orgulloso de ti, cosas que el primer día yo me sorprendi, te acuerdas ? Cuando en diciembre me contaste todo y yo me quedé helado KAKAKSKSKSJS, literalmente así fue mi ",
+  "amor, verte como has avanzado y saber para donde vas me llena demasiado, tus logros a mí me hacen feliz, tus logros a mí me llenan, verte feliz, verte sonreír a mí me llena en todos los sentidos, y verte como tienes personas que te aman, personas que son buenos contigo, personas que hacen ",
+  "cositas por ti a mí me hace feliz y mira, el pasado 31 ni nos hablabamos, fue un ah feliz cumpleaños y ya, pero mira dónde estamos LSLSKSKSKSKSKSKS hasta donde hemos llegado, todo lo que hemos pasado, días, noches, mañanas todo, todo el tiempo que hemos convivido a mí me hace extremadamente ",
+  "feliz, y si hoy cumplimos diez meses y esto hace que sea muchísimo más especial, cuanto tiempo de conocernos mi amor, no? Hace muchísimos años cuando éramos unos niños solíamos jugar y divertirnos mi amor, ahora miranos, estamos un poquito más grandes, un poquito más adultos y seguimos juntos.\n\n",
+  "Aunque no lo creas tú hiciste a ese niño que conociste demasiado feliz, tú lo llenaste de amor, de sentimientos nuevos, de tantas cosas que para el eran extrañas, por primera vez sintió el amor mutuo, sincero y puro, probó lo que amar y sentirse amado por esa persona que tanto amaba, eso ",
+  "tú me lo enseñaste y eso jamás, escuchame, jamás de los jamases lo voy a olvidar, porque ? Porque me enseñaste lo hermoso que era, enserio fue mi primera vez sintiendo eso y dios mío, te agradeceré toda mi vida y el resto de las otras por hacerlo, porque me encanta, es hermoso, me enseñaste ",
+  "que el amor no se compra, ni se gana, solo se obtiene porque así nace hacerlo y me mostraste un mundo lleno de colores, un mundo que para mí no existía pero llegaste tú, como una super heroína y me salvaste de ese engaño, muchas pero muchas gracias por hacer eso tan importante para mí.\n\n",
+  "10 meses mi amor, no te parece loca la cifra ? En que momento llegamos a 10 meses ? En que momento pasó tan rápido el tiempo? Yo no sé pero que siga pasando así, que pase más rápido y más y más hasta que llegue nuestro día, no sabes lo ansioso que estoy por diciembre, te lo juro que estoy ",
+  "súper ansioso y desesperado por qué llegue ese día, es tan importante para ambos y para mí uffff, conocer la mujer de mi vida, literalmente la primera y única que he tenido, la mujer que me ha enseñado muchas cosas, me ha hecho mejorar, me ha hecho ser mejor persona y tel agradezco demasiado.\n\n",
+  "Se que hemos tenido días demasiado feos mi amor, yo lo sé, días que parece que no nos entendiéramos, días que simplemente no fueron buenos pero sabes que es lo más importante de todo ? Que seguimos acá, miramos, seguimos juntos, amándonos, respetandonos, deseándonos y todo esos sentimientos bonitos que siempre hemos tenido.\n\nEs difícil mi amor, creeme que yo lo sé, pero lo estamos logrando, lo estamos haciendo mi reina ",
+  "hermosa y eso me pone super feliz, porque hemos pasado por tantas cosas que ese es nuestro aprendizaje y lo que nos enseña para no seguir en esos mismos errores, te amo muchísimo porque generas mil cosas en mi, te amo muchísimo porque me lo das todo sin pedirme nada, te amo muchísimo porque fuiste esa persona que a mí me enseñó que es el amor y desde que lo conocí, precisamente el tuyo, me encantó y solo quiero ese.\n\n",
+  "Felices 10 meses mi doble porción, han sido 10 meses increíbles, 10 meses llenos de tantas cosas, aventuras, momentos, peleas, pero sobre todo muchísimo amor, y esho es lo importante.\n\nGRACIAS ITZA, gracias por existir, gracias por elegirme a mí, gracias por estar conmigo y ",
+  "gracias, sobre todo gracias por estar para mí como yo lo estoy para ti, tú compañía para mí significa demasiado y solo basta hablar un rato contigo para olvidarme de mis problemas, por eso eres y siempre serás mi lugar seguro y mi lugar favorito.\n\n-De Miguel para mí ratoncita."
+]
+};
+const book = document.getElementById('book');
+const cover = document.getElementById('cover');
+const leftPage = document.getElementById('leftPage');
+const rightPage = document.getElementById('rightPage');
+const sheet = document.getElementById('sheet');
+const sheetFront = document.getElementById('sheetFront');
+const sheetBack = document.getElementById('sheetBack');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const counter = document.getElementById('counter');
+const leftHotspot = document.getElementById('leftHotspot');
+const rightHotspot = document.getElementById('rightHotspot');
+let isOpen = false;
+let spreadIndex = 0;
+let isAnimating = false;
+const total = bookData.pages.length;
+const lastSpreadIndex = Math.max(0, Math.ceil((total - 2) / 2) * 2);
+
+function escapeHtml(value){
+  return String(value).replace(/[&<>\"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+}
+const cornerShape = '<path d="M3 30 C3 14 14 3 30 3 M3 18 C3 10 10 3 18 3 M3 3 H14 M3 3 V14 M8 29 C8 18 18 8 29 8" stroke="currentColor" stroke-width="1" fill="none"/><path d="M8 8 L12 12 M14 3 L17 6" stroke="currentColor" stroke-width=".8" fill="none"/>';
+function corner(cls){return `<svg class="corner ${cls}" viewBox="0 0 40 40" aria-hidden="true">${cornerShape}</svg>`}
+function pageMarkup(index){
+  if(index >= total) return '';
+  const pageNumber = index + 1;
+  const text = bookData.pages[index] ?? '';
+  return `${corner('tl')}${corner('tr')}${corner('bl')}${corner('br')}
+    <div class="center-flourish" aria-hidden="true">✧</div>
+    <div class="page-content"><div class="writing">${escapeHtml(text)}</div></div>
+    <div class="page-num">— ${pageNumber} —</div>`;
+}
+function renderSpread(){
+  leftPage.innerHTML = pageMarkup(spreadIndex);
+  rightPage.innerHTML = pageMarkup(spreadIndex + 1);
+  rightPage.style.visibility = spreadIndex + 1 < total ? 'visible' : 'hidden';
+  counter.textContent = spreadIndex + 1 === total ? `${total} / ${total}` : `${spreadIndex + 1}–${Math.min(spreadIndex + 2,total)} / ${total}`;
+  prevBtn.disabled = !isOpen || isAnimating;
+  nextBtn.disabled = isOpen ? (spreadIndex >= lastSpreadIndex || isAnimating) : false;
+  leftHotspot.hidden = !isOpen || spreadIndex === 0 || isAnimating;
+  rightHotspot.hidden = !isOpen || spreadIndex >= lastSpreadIndex || isAnimating;
+}
+function openBook(){
+  if(isOpen)return;
+  isOpen=true;
+  book.classList.remove('closed');book.classList.add('open');
+  renderSpread();
+}
+function closeBook(){
+  if(isAnimating)return;
+  isOpen=false;spreadIndex=0;
+  book.classList.remove('open');book.classList.add('closed');
+  counter.textContent='PORTADA';prevBtn.disabled=true;nextBtn.disabled=false;
+  leftHotspot.hidden=true;rightHotspot.hidden=true;
+  sheet.className='sheet';sheet.style.left='50%';sheet.style.transformOrigin='left center';
+}
+function finishTurn(direction){
+  sheet.className='sheet';
+  sheet.style.left='50%';sheet.style.transformOrigin='left center';
+  spreadIndex = direction === 'forward' ? Math.min(spreadIndex + 2,lastSpreadIndex) : Math.max(spreadIndex - 2,0);
+  isAnimating=false;
+  renderSpread();
+}
+function turnNext(){
+  if(!isOpen||isAnimating||spreadIndex>=lastSpreadIndex)return;
+  isAnimating=true;
+  // La hoja que gira muestra la página actual por delante y la siguiente por detrás.
+  leftPage.innerHTML=pageMarkup(spreadIndex);
+  rightPage.innerHTML=pageMarkup(spreadIndex+3);
+  sheetFront.innerHTML=pageMarkup(spreadIndex+1);
+  sheetBack.innerHTML=pageMarkup(spreadIndex+2);
+  sheet.style.left='50%';sheet.style.transformOrigin='left center';
+  sheet.className='sheet';void sheet.offsetWidth;sheet.classList.add('turn-forward');
+  prevBtn.disabled=true;nextBtn.disabled=true;leftHotspot.hidden=true;rightHotspot.hidden=true;
+  sheet.addEventListener('animationend',function onEnd(e){
+    if(e.target!==sheet)return;sheet.removeEventListener('animationend',onEnd);finishTurn('forward');
+  });
+}
+function turnPrev(){
+  if(!isOpen||isAnimating||spreadIndex<=0)return;
+  isAnimating=true;
+  // Al retroceder, la página izquierda se voltea hacia la derecha.
+  leftPage.innerHTML=pageMarkup(spreadIndex-2);
+  rightPage.innerHTML=pageMarkup(spreadIndex+1);
+  sheetFront.innerHTML=pageMarkup(spreadIndex);
+  sheetBack.innerHTML=pageMarkup(spreadIndex-1);
+  sheet.style.left='0';sheet.style.transformOrigin='right center';
+  sheet.className='sheet';void sheet.offsetWidth;sheet.classList.add('turn-backward');
+  prevBtn.disabled=true;nextBtn.disabled=true;leftHotspot.hidden=true;rightHotspot.hidden=true;
+  sheet.addEventListener('animationend',function onEnd(e){
+    if(e.target!==sheet)return;sheet.removeEventListener('animationend',onEnd);finishTurn('backward');
+  });
+}
+cover.addEventListener('click',openBook);
+cover.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openBook()}});
+prevBtn.addEventListener('click',()=>{if(!isOpen)return;if(spreadIndex===0)closeBook();else turnPrev()});
+nextBtn.addEventListener('click',()=>{if(!isOpen)openBook();else turnNext()});
+leftHotspot.addEventListener('click',turnPrev);
+rightHotspot.addEventListener('click',turnNext);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'){if(!isOpen)openBook();else turnNext()}
+  if(e.key==='ArrowLeft'){if(isOpen&&spreadIndex===0)closeBook();else turnPrev()}
+  if(e.key==='Escape'&&isOpen&&spreadIndex===0)closeBook();
+});
+let dragStartX=null;
+book.addEventListener('pointerdown',e=>{if(isOpen&&!isAnimating&&e.target===book)dragStartX=e.clientX;});
+book.addEventListener('pointerup',e=>{
+  if(dragStartX===null)return;
+  const delta=e.clientX-dragStartX;
+  if(Math.abs(delta)>45){if(delta<0)turnNext();else turnPrev();}
+  dragStartX=null;
+});
+book.addEventListener('pointercancel',()=>{dragStartX=null});
+renderSpread();counter.textContent='PORTADA';
+</script>
+</body>
+</html>
