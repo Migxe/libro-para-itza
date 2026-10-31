@@ -119,7 +119,7 @@ body{
   display:flex;align-items:center;justify-content:center;text-align:center;
   color:var(--ink);pointer-events:none;
 }
-.writing{width:100%;max-height:100%;overflow:hidden;overflow-y:hidden;overflow-x:hidden;scrollbar-width:none;white-space:pre-wrap;text-align:left;font-size:clamp(12px,1.24vw,14px);line-height:1.46;}
+.writing{width:100%;max-height:100%;overflow:hidden;overflow-y:hidden;overflow-x:hidden;scrollbar-width:none;white-space:pre-wrap;text-align:left;font-size:clamp(11px,1.15vw,13px);line-height:1.38;}
 .page-num{
   position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
   color:#9b804c;font-size:11px;letter-spacing:.19em;z-index:2;
@@ -175,12 +175,12 @@ body{
 .control-btn:disabled{opacity:.28;cursor:default}
 .counter{min-width:112px;text-align:center;color:#91794e;font:10px Arial,sans-serif;letter-spacing:.18em}
 @media(max-width:650px){
-  .writing{font-size:9.5px;line-height:1.25;max-height:100%;overflow:hidden;overflow-y:hidden;}
-  .app{padding:14px 8px;gap:13px}
-  .book{width:96vw;min-height:240px}
-  .book.closed{width:min(74vw,390px);min-height:315px}
+  .writing{font-size:clamp(8px,2.15vw,9.2px);line-height:1.24;max-height:100%;overflow:hidden;overflow-y:hidden;overflow-x:hidden;}
+  .app{padding:12px 7px;gap:12px}
+  .book{width:96vw;min-height:min(60vh,360px);aspect-ratio:1.12/1}
+  .book.closed{width:min(74vw,390px);min-height:315px;aspect-ratio:.75/1}
   .page:before{inset:10px}
-  .page-content{inset:14% 10% 15%}
+  .page-content{inset:11% 10% 13%}
   .page-num{bottom:15px}
   .corner{width:25px;height:25px}
   .corner.tl{top:14px;left:14px}.corner.tr{top:14px;right:14px}
@@ -237,22 +237,34 @@ body{
 const bookData = {
   title: 'El amor hacia la persona que me lo enseñó',
   dedication: 'Para mi media porción',
-  pages: [
-  "Muyyyyyy buenossss días muñequita, como amaneció la cumpleañera más increíble, guapa, preciosa, apoteósicaa y sobre todo inteligente? Bien? Espero que Shi mi amor, hoy es un día muy importante para ti, para mí, para nosotros y para las personas que te amamos, un día como hoy nació la persona que se convirtió en mi persona favorita, en la persona que más amo en este mundo.\n\n",
-  "Cumpliste 22 añitos mi amor, estás grandecita ya, pero sobre todo has cumplido muchas cosas de las cuales yo estoy demasiado orgulloso de ti, cosas que el primer día yo me sorprendi, te acuerdas ? Cuando en diciembre me contaste todo y yo me quedé helado KAKAKSKSKSJS, literalmente así fue mi ",
-  "amor, verte como has avanzado y saber para donde vas me llena demasiado, tus logros a mí me hacen feliz, tus logros a mí me llenan, verte feliz, verte sonreír a mí me llena en todos los sentidos, y verte como tienes personas que te aman, personas que son buenos contigo, personas que hacen ",
-  "cositas por ti a mí me hace feliz y mira, el pasado 31 ni nos hablabamos, fue un ah feliz cumpleaños y ya, pero mira dónde estamos LSLSKSKSKSKSKSKS hasta donde hemos llegado, todo lo que hemos pasado, días, noches, mañanas todo, todo el tiempo que hemos convivido a mí me hace extremadamente ",
-  "feliz, y si hoy cumplimos diez meses y esto hace que sea muchísimo más especial, cuanto tiempo de conocernos mi amor, no? Hace muchísimos años cuando éramos unos niños solíamos jugar y divertirnos mi amor, ahora miranos, estamos un poquito más grandes, un poquito más adultos y seguimos juntos.\n\n",
-  "Aunque no lo creas tú hiciste a ese niño que conociste demasiado feliz, tú lo llenaste de amor, de sentimientos nuevos, de tantas cosas que para el eran extrañas, por primera vez sintió el amor mutuo, sincero y puro, probó lo que amar y sentirse amado por esa persona que tanto amaba, eso ",
-  "tú me lo enseñaste y eso jamás, escuchame, jamás de los jamases lo voy a olvidar, porque ? Porque me enseñaste lo hermoso que era, enserio fue mi primera vez sintiendo eso y dios mío, te agradeceré toda mi vida y el resto de las otras por hacerlo, porque me encanta, es hermoso, me enseñaste ",
-  "que el amor no se compra, ni se gana, solo se obtiene porque así nace hacerlo y me mostraste un mundo lleno de colores, un mundo que para mí no existía pero llegaste tú, como una super heroína y me salvaste de ese engaño, muchas pero muchas gracias por hacer eso tan importante para mí.\n\n",
-  "10 meses mi amor, no te parece loca la cifra ? En que momento llegamos a 10 meses ? En que momento pasó tan rápido el tiempo? Yo no sé pero que siga pasando así, que pase más rápido y más y más hasta que llegue nuestro día, no sabes lo ansioso que estoy por diciembre, te lo juro que estoy ",
-  "súper ansioso y desesperado por qué llegue ese día, es tan importante para ambos y para mí uffff, conocer la mujer de mi vida, literalmente la primera y única que he tenido, la mujer que me ha enseñado muchas cosas, me ha hecho mejorar, me ha hecho ser mejor persona y tel agradezco demasiado.\n\n",
-  "Se que hemos tenido días demasiado feos mi amor, yo lo sé, días que parece que no nos entendiéramos, días que simplemente no fueron buenos pero sabes que es lo más importante de todo ? Que seguimos acá, miramos, seguimos juntos, amándonos, respetandonos, deseándonos y todo esos sentimientos bonitos que siempre hemos tenido.\n\nEs difícil mi amor, creeme que yo lo sé, pero lo estamos logrando, lo estamos haciendo mi reina ",
-  "hermosa y eso me pone super feliz, porque hemos pasado por tantas cosas que ese es nuestro aprendizaje y lo que nos enseña para no seguir en esos mismos errores, te amo muchísimo porque generas mil cosas en mi, te amo muchísimo porque me lo das todo sin pedirme nada, te amo muchísimo porque fuiste esa persona que a mí me enseñó que es el amor y desde que lo conocí, precisamente el tuyo, me encantó y solo quiero ese.\n\n",
-  "Felices 10 meses mi doble porción, han sido 10 meses increíbles, 10 meses llenos de tantas cosas, aventuras, momentos, peleas, pero sobre todo muchísimo amor, y esho es lo importante.\n\nGRACIAS ITZA, gracias por existir, gracias por elegirme a mí, gracias por estar conmigo y ",
-  "gracias, sobre todo gracias por estar para mí como yo lo estoy para ti, tú compañía para mí significa demasiado y solo basta hablar un rato contigo para olvidarme de mis problemas, por eso eres y siempre serás mi lugar seguro y mi lugar favorito.\n\n-De Miguel para mí ratoncita."
-]
+  pages:   [
+    "Muyyyyyy buenossss días muñequita, como amaneció la cumpleañera más increíble, guapa, preciosa, apoteósicaa y sobre todo inteligente? Bien? Espero que Shi mi amor, hoy ",
+    "es un día muy importante para ti, para mí, para nosotros y para las personas que te amamos, un día como hoy nació la persona que se convirtió en mi persona favorita, en ",
+    "la persona que más amo en este mundo.\n\nCumpliste 22 añitos mi amor, estás grandecita ya, pero sobre todo has cumplido muchas cosas de las cuales yo estoy demasiado ",
+    "orgulloso de ti, cosas que el primer día yo me sorprendi, te acuerdas ? Cuando en diciembre me contaste todo y yo me quedé helado KAKAKSKSKSJS, literalmente así fue mi ",
+    "amor, verte como has avanzado y saber para donde vas me llena demasiado, tus logros a mí me hacen feliz, tus logros a mí me llenan, verte feliz, verte sonreír a mí me ",
+    "llena en todos los sentidos, y verte como tienes personas que te aman, personas que son buenos contigo, personas que hacen cositas por ti a mí me hace feliz y mira, el ",
+    "pasado 31 ni nos hablabamos, fue un ah feliz cumpleaños y ya, pero mira dónde estamos LSLSKSKSKSKSKSKS hasta donde hemos llegado, todo lo que hemos pasado, días, noches, ",
+    "mañanas todo, todo el tiempo que hemos convivido a mí me hace extremadamente feliz, y si hoy cumplimos diez meses y esto hace que sea muchísimo más especial, cuanto tiempo ",
+    "de conocernos mi amor, no? Hace muchísimos años cuando éramos unos niños solíamos jugar y divertirnos mi amor, ahora miranos, estamos un poquito más grandes, un poquito ",
+    "más adultos y seguimos juntos.\n\nAunque no lo creas tú hiciste a ese niño que conociste demasiado feliz, tú lo llenaste de amor, de sentimientos nuevos, de tantas cosas ",
+    "que para el eran extrañas, por primera vez sintió el amor mutuo, sincero y puro, probó lo que amar y sentirse amado por esa persona que tanto amaba, eso tú me lo enseñaste ",
+    "y eso jamás, escuchame, jamás de los jamases lo voy a olvidar, porque ? Porque me enseñaste lo hermoso que era, enserio fue mi primera vez sintiendo eso y dios mío, te ",
+    "agradeceré toda mi vida y el resto de las otras por hacerlo, porque me encanta, es hermoso, me enseñaste que el amor no se compra, ni se gana, solo se obtiene porque así ",
+    "nace hacerlo y me mostraste un mundo lleno de colores, un mundo que para mí no existía pero llegaste tú, como una super heroína y me salvaste de ese engaño, muchas pero ",
+    "muchas gracias por hacer eso tan importante para mí.\n\n10 meses mi amor, no te parece loca la cifra ? En que momento llegamos a 10 meses ? En que momento pasó tan rápido ",
+    "el tiempo? Yo no sé pero que siga pasando así, que pase más rápido y más y más hasta que llegue nuestro día, no sabes lo ansioso que estoy por diciembre, te lo juro que ",
+    "estoy súper ansioso y desesperado por qué llegue ese día, es tan importante para ambos y para mí uffff, conocer la mujer de mi vida, literalmente la primera y única que ",
+    "he tenido, la mujer que me ha enseñado muchas cosas, me ha hecho mejorar, me ha hecho ser mejor persona y tel agradezco demasiado.\n\nSe que hemos tenido días demasiado feos ",
+    "mi amor, yo lo sé, días que parece que no nos entendiéramos, días que simplemente no fueron buenos pero sabes que es lo más importante de todo ? Que seguimos acá, miramos, ",
+    "seguimos juntos, amándonos, respetandonos, deseándonos y todo esos sentimientos bonitos que siempre hemos tenido.\n\nEs difícil mi amor, creeme que yo lo sé, pero lo estamos ",
+    "logrando, lo estamos haciendo mi reina hermosa y eso me pone super feliz, porque hemos pasado por tantas cosas que ese es nuestro aprendizaje y lo que nos enseña para no ",
+    "seguir en esos mismos errores, te amo muchísimo porque generas mil cosas en mi, te amo muchísimo porque me lo das todo sin pedirme nada, te amo muchísimo porque fuiste ",
+    "esa persona que a mí me enseñó que es el amor y desde que lo conocí, precisamente el tuyo, me encantó y solo quiero ese.\n\nFelices 10 meses mi doble porción, han sido 10 ",
+    "meses increíbles, 10 meses llenos de tantas cosas, aventuras, momentos, peleas, pero sobre todo muchísimo amor, y esho es lo importante.\n\nGRACIAS ITZA, gracias por ",
+    "existir, gracias por elegirme a mí, gracias por estar conmigo y gracias, sobre todo gracias por estar para mí como yo lo estoy para ti, tú compañía para mí significa ",
+    "demasiado y solo basta hablar un rato contigo para olvidarme de mis problemas, por eso eres y siempre serás mi lugar seguro y mi lugar favorito.\n\n-De Miguel para mí ratoncita."
+  ]
 };
 const book = document.getElementById('book');
 const cover = document.getElementById('cover');
